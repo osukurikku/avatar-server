@@ -20,11 +20,7 @@ async def handler(request):
     user = await get_or_none(users, id=token_info.user)
     if not user:
         return JSONResponse({'error': f'User with id {token_info.user} not found in database!'})
-    
-    if config['enableDonorGifs']:
-        if not (user.privileges & perms.USER_DONOR) > 0:
-            return JSONResponse({'error': 'You are not allowed to upload avatar (this feature enabled only for donors)'})
-    
+
     form_data = await request.form()
     if form_data.get("avatar", None) is None:
         return JSONResponse({'error': 'Avatar not found'})
@@ -41,6 +37,10 @@ async def handler(request):
     if img.format == "GIF":
         if config['enableGifs'] is False:
             return JSONResponse({'error': 'Sorry, but now you can\'t upload GIF images. (server disallowed)'})
+
+        if config['enableDonorGifs']:
+            if not (user.privileges & perms.USER_DONOR) > 0:
+                return JSONResponse({'error': 'You are not allowed to upload avatar (this feature enabled only for donors)'})
 
     # Remove old avatars
     if os.path.isfile(f"{config['avatar_dir']}/{user.id}.png"):
