@@ -1,0 +1,16 @@
+# WEB
+starlette
+uvicorn
+aiofiles
+
+# DB
+peewee==2.10.2
+peewee_async
+aiomysql
+
+# ASYNC
+asyncio
+
+#Images
+pillow
+python-multipart

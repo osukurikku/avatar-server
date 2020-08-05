@@ -1,0 +1,16 @@
+config = {
+    "web_config": {
+        "host": "127.0.0.1",
+        "port": 3980,
+        "debug": True
+    },
+    "avatar_dir": "./avatars",
+    "db": {
+        "host": "localhost",
+        "database": "ripple",
+        "user": "root",
+        "password": "pass"
+    },
+    "enableGifs": True,
+    "enableDonorGifs": False
+}
