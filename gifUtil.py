@@ -78,8 +78,12 @@ def extract_and_resize_frames(path, resize_to=None):
             If the GIF uses local colour tables, each frame will have its own palette.
             If not, we need to apply the global palette to the new frame.
             '''
-            if not im.getpalette():
-                im.putpalette(p)
+            try:
+                if not im.getpalette():
+                    im.putpalette(p)
+            except Exception:
+                # use default palette
+                pass
 
             new_frame = Image.new('RGBA', im.size)
 

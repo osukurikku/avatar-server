@@ -11,7 +11,7 @@ if not os.path.exists(config['avatar_dir']):
  
     d = ImageDraw.Draw(empty_image)
     d.text((10,10), "Hello, another epic ripple server", fill=(255,255,255))
-    empty_image.save(f"{config['avatar_dir']}/999.png", format="PNG")
+    empty_image.save(f"{config['avatar_dir']}/0.png", format="PNG")
 
 async def handler(request):
     user_id = request.path_params['id']
@@ -42,4 +42,4 @@ async def handler(request):
             return FileResponse(f"{config['avatar_dir']}/{user_id}.gif")
     
     # We are not found anything, than send default 999.png!
-    return FileResponse(f"{config['avatar_dir']}/999.png")
+    return FileResponse(f"{config['avatar_dir']}/0.png")
